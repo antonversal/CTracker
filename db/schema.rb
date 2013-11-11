@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131111135912) do
+ActiveRecord::Schema.define(version: 20131111140422) do
 
   create_table "countries", force: true do |t|
     t.string   "code"
@@ -21,13 +21,14 @@ ActiveRecord::Schema.define(version: 20131111135912) do
     t.boolean  "visited",    default: false
   end
 
-  add_index "countries", ["code"], name: "index_countries_on_code", unique: true
-
-  create_table "currencies", primary_key: "code", force: true do |t|
+  create_table "currencies", force: true do |t|
+    t.string   "code"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "country_id"
   end
+
+  add_index "currencies", ["code"], name: "index_currencies_on_code", unique: true
 
 end
