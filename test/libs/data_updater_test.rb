@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'data_uploader/data_updater'
 
 class DataUpdaterTest < ActiveSupport::TestCase
   test "parse_response returns correct hash structure" do
