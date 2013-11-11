@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-CurrencyTracker::Application.config.secret_token = '6725af6ed78f3b1f346be407ac50359be53dc023b31fb1d673cac36c6bc1681719c93455b1dcdcfe6ebcd37b3495781b42507994dcbef009f89efcd95249b08b'
+CurrencyTracker::Application.config.secret_key_base = 'e54b19e1118abd4f138d7ce6d5a97eef6bea93e097f7959fa75673c00255d32e3c85c83060624cccefeba97ad5622ed7ee8e3e1b6141a6f3ec616c99485c927f'
