@@ -1,13 +1,22 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '4.0.1'
 gem 'sqlite3'
-gem 'savon'
+gem 'savon', '~>0.9.1'
 gem 'nokogiri'
 
-group :development do
-  gem 'cucumber'
-  gem 'cucumber-rails'
-  gem 'capybara'
+gem 'jquery-rails'
+
+gem 'sass-rails', '~> 4.0.0'
+
+gem 'uglifier', '>= 1.3.0'
+
+group :development, :test do
+  gem 'byebug'
+end
+
+group :test do
+  gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'launchy'
 end
