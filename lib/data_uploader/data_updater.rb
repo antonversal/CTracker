@@ -11,7 +11,9 @@ class DataUpdater
     return nil if response.nil?
     result = response.to_hash[:get_currencies_response][:get_currencies_result]
     doc = Nokogiri::XML::Document.parse(result)
-    doc.css('Table').each { |table| update_one(table)}
+    ActiveRecord::Base.transaction do
+      doc.css('Table').each { |table| update_one(table)}
+    end
   end
 
   def update_one(table)
