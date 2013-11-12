@@ -9,6 +9,7 @@ Feature: Manage countries
 
   Scenario: List Countries
     Then I should see list of countries
+    And I should see visited stats
 
   Scenario: Visit country
     When I record I visited country

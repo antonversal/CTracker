@@ -1,11 +1,3 @@
-Given(/^I am sign in as a user$/) do
-  @user = users(:smith)
-  visit new_user_session_path
-  fill_in "Email", with: @user.email
-  fill_in "Password", with: "paSSword123456"
-  click_button "Sign in"
-end
-
 When(/^I am on the countries page$/) do
   visit countries_path
 end
@@ -23,4 +15,10 @@ end
 
 Then /^I should see the following table:$/ do |expected_table|
   expected_table.diff!(rows)
+end
+
+Then(/^I should see visited stats$/) do
+  trs = all("#visited_countries_chart>table>tr")
+  assert(trs[0].has_content?("Visited 1"), "should have content 'Visited 1'")
+  assert(trs[1].has_content?("Not Visited 1"), "should have content 'Not Visited 1'")
 end

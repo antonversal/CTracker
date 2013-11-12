@@ -3,10 +3,10 @@
     <table>
       <tr>
         <th>Visited</th>
-        <td><%= Country.visited.count %></td>
+        <td><%= current_user.visited_countries_count %></td>
       </tr><tr>
         <th>Not Visited</th>
-        <td><%= Country.not_visited.count %></td>
+        <td><%= current_user.not_visited_countries_count %></td>
       </tr>
     </table>
   </div>
@@ -17,16 +17,14 @@
     <tr>
       <th>Name</th>
       <th>Code</th>
-      <th>Status</th>
-      <th></th>
-      <th></th>
+      <th>Visited?</th>
     </tr>
 
   <% @countries.each do |country| %>
     <tr>
       <td><%= country.name %></td>
       <td><%= country.code %></td>
-      <td><%= country.visited? ? 'Visited' : 'Not Visited' %></td>
+      <td><%= check_box_tag(:visited, country.id, country.is_visited_by?(current_user)) %></td>
     </tr>
   <% end %>
   </table>
