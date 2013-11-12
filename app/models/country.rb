@@ -7,7 +7,8 @@ class Country < ActiveRecord::Base
 
   # Associations: belongs_to > has_one > has_many > has_and_belongs_to_many
   has_many :currencies, dependent: :destroy
-
+  has_many :user_countries
+  has_many :users, through: :user_countries
   # Delegates
 
   # Validations: presence > by type > validates
@@ -18,14 +19,13 @@ class Country < ActiveRecord::Base
   # Model dictionaries, state machine
 
   # Scopes
-  scope :visited,     -> { where(visited: true)  }
-  scope :not_visited, -> { where(visited: false) }
-
   class << self
 
   end
   # Other model methods
-
+  def is_visited_by?(user)
+    user_countries.map(&:user_id).include? user.id
+  end
   # Private methods (for example: custom validators)
 
 end
