@@ -15,3 +15,9 @@ Feature: Manage countries
     When I record I visited country
     Then visited state should be changed
     And chart should change persentage
+
+  @javascript @filter
+  Scenario: Filter countries
+    When I type first tree letters
+    Then I should see filtered country
+    And I should not see other countries

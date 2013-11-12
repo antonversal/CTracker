@@ -1,11 +1,11 @@
 class CountriesController < ApplicationController
   # GET /countries
-  # GET /countries.xml
   def index
-    @countries = Country.includes(:user_countries)
+    @q = Country.includes(:user_countries).search(params[:q])
+    @countries = @q.result(distinct: true)
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @countries }
+      format.js
     end
   end
 end

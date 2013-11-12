@@ -15,12 +15,15 @@ gem 'turbolinks'
 
 gem 'devise'
 
+gem 'ransack'
+
 group :development, :test do
   gem 'byebug'
 end
 
 group :test do
   gem 'cucumber-rails', :require => false
+  gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'mocha', require: false

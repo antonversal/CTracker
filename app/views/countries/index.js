@@ -1,0 +1,1 @@
+$('#countries_table').html('<%= escape_javascript(render("table")) %>');

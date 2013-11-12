@@ -11,21 +11,9 @@
     </table>
   </div>
 
+  <%= render 'search_form' %>
+
   <h1>Countries</h1>
 
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Code</th>
-      <th>Visited?</th>
-    </tr>
-
-  <% @countries.each do |country| %>
-    <tr>
-      <td><%= country.name %></td>
-      <td><%= country.code %></td>
-      <td><%= check_box_tag(:visited, country.id, country.is_visited_by?(current_user)) %></td>
-    </tr>
-  <% end %>
-  </table>
+  <%= render 'table' %>
 </section>
