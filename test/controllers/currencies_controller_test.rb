@@ -2,10 +2,12 @@ require 'test_helper'
 
 class CurrenciesControllerTest < ActionController::TestCase
   should_not_respond_to_actions :new => :get, 
-                                :destroy => :get, 
+                                :destroy => :delete,
                                 :create => :post,
                                 :edit => :get, 
-                                :update => :put
+                                :update => :put,
+                                :update => :patch,
+                                :show => :get
 
   setup do
     @currency = currencies(:one)
@@ -15,10 +17,5 @@ class CurrenciesControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:currencies)
-  end
-
-  test "should show currency" do
-    get :show, :id => @currency.to_param
-    assert_response :success
   end
 end
