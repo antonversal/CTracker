@@ -24,6 +24,6 @@ class ActionController::TestCase
 
   def setup
     @request.env["devise.mapping"] = Devise.mappings[:admin]
-    sign_in users(:one)
+    sign_in users(:smith)
   end
 end

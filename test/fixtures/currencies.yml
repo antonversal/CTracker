@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: NameOne
-  code: CodeOne
-  country: one
+dollar:
+  name: Dollar
+  code: usd
+  country: usa
 
-two:
-  name: NameTwo
-  code: CodeTwo
-  country: two
+hryvnia:
+  name: Hryvnia
+  code: uah
+  country: ukraine

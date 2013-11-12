@@ -10,7 +10,7 @@ class CountriesControllerTest < ActionController::TestCase
                                 :show => :get
 
   setup do
-    @country = countries(:one)
+    @country = countries(:ukraine)
   end
 
   test "should get index" do

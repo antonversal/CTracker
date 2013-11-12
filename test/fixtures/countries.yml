@@ -1,9 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: NameOne
-  code: CodeOne
+ukraine:
+  name: Ukraine
+  code: ua
 
-two:
-  name: NameTwo
-  code: CodeTwo
+usa:
+  name: USA
+  code: us

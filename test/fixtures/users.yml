@@ -1,7 +1,7 @@
-one:
+smith:
   email: smith@example.com
   encrypted_password: <%= BCrypt::Password.create("paSSword123456")%>
 
-two:
+doe:
   email: doe@example.com
   encrypted_password: <%= BCrypt::Password.create("paSSword123456")%>

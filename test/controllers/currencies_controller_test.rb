@@ -10,7 +10,7 @@ class CurrenciesControllerTest < ActionController::TestCase
                                 :show => :get
 
   setup do
-    @currency = currencies(:one)
+    @currency = currencies(:dollar)
   end
 
   test "should get index" do
