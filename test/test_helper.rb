@@ -18,3 +18,12 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
+
+  def setup
+    @request.env["devise.mapping"] = Devise.mappings[:admin]
+    sign_in users(:one)
+  end
+end
