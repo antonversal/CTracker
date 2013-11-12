@@ -13,6 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'turbolinks'
 
+gem 'devise'
 
 group :development, :test do
   gem 'byebug'
