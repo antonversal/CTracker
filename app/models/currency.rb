@@ -11,7 +11,7 @@ class Currency < ActiveRecord::Base
 
   # Validations: presence > by type > validates
   validates_presence_of :name, :code, :country_id
-  validates_uniqueness_of :code, allow_blank: true
+  validates_uniqueness_of :code
   # Other properties (e.g. accepts_nested_attributes_for)
 
   # Model dictionaries, state machine
