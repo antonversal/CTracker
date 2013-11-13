@@ -1,6 +1,6 @@
 CurrencyTracker
 ===============
-[![Code Climate](https://codeclimate.com/github/antonversal/CTracker.png)](https://codeclimate.com/github/https://codeclimate.com/github/antonversal/CTracker.png)
+[![Code Climate](https://codeclimate.com/github/antonversal/CTracker.png)](https://codeclimate.com/github/antonversal/CTracker)
 
 CurrencyTracker allows you to track your personal collection of world currencies, by tagging the countries that you've visited along your travels.
 
