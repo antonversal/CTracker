@@ -32,7 +32,15 @@ class User < ActiveRecord::Base
   end
 
   def not_visited_countries_count
-    Country.count - countries.count
+    Country.count - visited_countries_count
+  end
+
+  def collected_currencies_count
+    countries.joins(:currencies).count
+  end
+
+  def not_collected_currencies_count
+    Currency.count - collected_currencies_count
   end
   # Private methods (for example: custom validators)
 
