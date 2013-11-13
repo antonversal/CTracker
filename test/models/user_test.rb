@@ -11,6 +11,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "#not_visited_countries_count" do
-    assert_equal(1, @user.not_visited_countries_count)
+    assert_equal(2, @user.not_visited_countries_count)
   end
 end

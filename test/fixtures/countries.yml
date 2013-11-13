@@ -7,3 +7,7 @@ ukraine:
 usa:
   name: USA
   code: us
+
+canada:
+  name: Canada
+  code: ca
