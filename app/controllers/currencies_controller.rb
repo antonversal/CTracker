@@ -2,11 +2,11 @@ class CurrenciesController < ApplicationController
   # GET /currencies
   # GET /currencies.xml
   def index
-    @currencies = Currency.includes(:country)
-
+    @q = Currency.includes(:country, :user_countries).search(params[:q])
+    @currencies = @q.result(distinct: true)
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @currencies }
+      format.js
     end
   end
 end

@@ -1,32 +1,13 @@
 <section>
-  <div id="collected_currencies_chart" class="simple_pie_chart" width='300px' height='100px'>
-    <table>
-      <tr>
-        <th>Collected</th>
-        <td><%= Currency.collected.count %></td>
-      </tr><tr>
-        <th>Not Collected</th>
-        <td><%= Currency.not_collected.count %></td>
-      </tr>
-    </table>
-  </div>
+  <%= pie_tag(visited_label: "Collected",
+              not_visited_label: "Not Collected",
+              visited_count: current_user.collected_currencies_count,
+              not_visited_count: current_user.not_collected_currencies_count) %>
+
+  <%= render 'search_form' %>
 
   <h1>Currencies</h1>
-
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Code</th>
-      <th>Status</th>
-      <th></th>
-    </tr>
-
-  <% @currencies.each do |currency| %>
-    <tr>
-      <td><%= currency.name %></td>
-      <td><%= currency.code %></td>
-      <td><%= currency.collected? ? 'Collected' : 'Not Collected' %></td>
-    </tr>
-  <% end %>
+  <table id="currencies_table" class="visit-table">
+    <%= render 'table' %>
   </table>
 </section>

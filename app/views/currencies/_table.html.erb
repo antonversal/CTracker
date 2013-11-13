@@ -1,0 +1,20 @@
+<tr>
+  <th>Name</th>
+  <th>Code</th>
+  <th>
+    <%= check_box_tag(:visit_all,
+                      1,
+                      false,
+                      class: "visit-all",
+                      data: {url: countries_visited_path},
+        ) %>
+    Collected?
+  </th>
+</tr>
+<% @currencies.each do |currency| %>
+    <tr>
+      <td><%= currency.name %></td>
+      <td><%= currency.code %></td>
+      <td><%= collected_checkbox_tag(currency) %></td>
+    </tr>
+<% end %>

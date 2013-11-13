@@ -7,6 +7,7 @@ class Currency < ActiveRecord::Base
 
   # Associations: belongs_to > has_one > has_many > has_and_belongs_to_many
   belongs_to :country
+  has_many :user_countries, through: :country
   # Delegates
 
   # Validations: presence > by type > validates
@@ -17,15 +18,13 @@ class Currency < ActiveRecord::Base
   # Model dictionaries, state machine
 
   # Scopes
-  scope :collected,     -> {joins(:country).where(countries: {visited: true})}
-  scope :not_collected, -> {joins(:country).where(countries: {visited: false})}
   class << self
 
   end
 
   # Other model methods
-  def collected?
-    country.visited?
+  def is_collected_by?(user)
+    country.is_visited_by?(user)
   end
   # Private methods (for example: custom validators)
 
