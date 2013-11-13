@@ -5,19 +5,22 @@ class UserCountriesControllerTest < ActionController::TestCase
     @user_country = user_countries(:smith_usa)
   end
 
-  test "should create user_country" do
+  test "should batch create user_countries" do
+    country = countries(:ukraine)
     assert_difference('UserCountry.count') do
-      post :create, user_country: { country_id: @user_country.country_id, user_id: @user_country.user_id }
+      post :batch_create, country_ids: [country.id]
     end
-
-    assert_redirected_to user_country_path(assigns(:user_country))
+    expected = [{country.id => {status: :created}}].to_json
+    assert_response :ok
+    assert_equal(expected, response.body)
   end
 
-  test "should destroy user_country" do
+  test "should destroy batch user_countries" do
     assert_difference('UserCountry.count', -1) do
-      delete :destroy, id: @user_country
+      delete :batch_destroy, country_ids: [@user_country.country_id]
     end
-
-    assert_redirected_to user_countries_path
+    expected = [{@user_country.country_id => {status: :destroyed}}].to_json
+    assert_response :ok
+    assert_equal(expected, response.body)
   end
 end

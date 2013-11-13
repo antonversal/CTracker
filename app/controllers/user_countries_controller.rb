@@ -1,27 +1,21 @@
 class UserCountriesController < ApplicationController
-  # POST /user_countries
-  def create
-    @user_country = UserCountry.new(user_country_params)
-    @user_country.user = current_user
-    if @user_country.save
-      render json: @user_country,
-             status: :created,
-             location: @user_country
-    else
-      render json: @user_country.errors, status: :unprocessable_entity
-    end
+  # POST /countries/visited
+  def batch_create
+    created = UserCountry.batch_create(country_ids, current_user)
+    render json: created.to_json,
+           status: :ok
   end
 
-  # DELETE /user_countries/1
-  def destroy
-    @user_country = current_user.user_countries.find(params[:id])
-    @user_country.destroy
-    head :no_content
+  # DELETE /countries/visited
+  def batch_destroy
+    deleted = current_user.user_countries.batch_destroy(country_ids)
+    render json: deleted.to_json,
+           status: :ok
   end
 
   private
     # Only allow a trusted parameter "white list" through.
-    def user_country_params
-      params.require(:user_country).permit(:country_id)
+    def country_ids
+      params.permit(country_ids: [])[:country_ids]
     end
 end
