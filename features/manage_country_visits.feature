@@ -1,4 +1,4 @@
-Feature: Manage countries
+Feature: Manage countries visits
   In order to manage my travel itinerary
   I am as a user
   Want to manage the countries I have visited.
