@@ -7,16 +7,13 @@ var SimplePieChart = {};
 
 SimplePieChart.initialize = function(root_element) { return new ViewController(root_element, {
   initialize: function() {
-    this.sets = {};
     this.width  = parseInt( this.root.getAttribute('width') );
     this.height = parseInt( this.root.getAttribute('height') );
 
-    var sets = $(this.root).find('tr');
-    for( var i = 0; i < sets.length; i++ ) {
-      var set_name = $(sets[i]).find('th').html();
-      var set_value = parseInt( $(sets[i]).find('td').html() );
-      this.sets[set_name] = set_value;
-    }
+    this.visited_label = $(this.root).data("visited-label");
+    this.not_visited_label = $(this.root).data("not-visited-label");
+    this.visited_count = $(this.root).data("visited-count");
+    this.not_visited_count = $(this.root).data("not-visited-count");
 
     this.render();
   },
@@ -45,45 +42,25 @@ SimplePieChart.initialize = function(root_element) { return new ViewController(r
   },
 
   values: function() {
-    var result = new Array();
-    for( var set_name in this.sets )
-      result[result.length] = this.sets[set_name];
-    return result;
+    return [this.visited_count, this.not_visited_count];
   },
 
   labels: function() {
-    var result = new Array();
-    for( var set_name in this.sets )
-      result[result.length] = set_name;
-    return result;
-  },
-
-  raw_total: function() {
-    var total = 0;
-
-    for( set_name in this.sets ) 
-      total += this.sets[set_name];
-    
-    return total;
+    return [this.visited_label, this.not_visited_label];
   },
 
   add_visited: function(count){
-    this.sets["Visited"] = this.sets["Visited"] + count;
-    this.sets["Not Visited"] = this.sets["Not Visited"] - count;
+    this.visited_count = this.visited_count + count;
+    this.not_visited_count = this.not_visited_count - count;
     this.render();
   },
 
   remove_visited: function(count){
-    this.sets["Visited"] = this.sets["Visited"] - count;
-    this.sets["Not Visited"] = this.sets["Not Visited"] + count;
+    this.visited_count = this.visited_count - count;
+    this.not_visited_count = this.not_visited_count + count;
     this.render();
-  },
-
-  percent_for_set: function(set_name) {
-    var raw_value = this.sets[set_name];
-
-    return raw_value / this.raw_total();
   }
+
 })};
 
 $(document).ready(function() {
