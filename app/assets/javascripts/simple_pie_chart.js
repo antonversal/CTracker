@@ -2,6 +2,7 @@
 // Author: Bradley J. Spaulding
 // Created On: 2011-04-25
 
+var simplePieChart;
 var SimplePieChart = {};
 
 SimplePieChart.initialize = function(root_element) { return new ViewController(root_element, {
@@ -66,6 +67,18 @@ SimplePieChart.initialize = function(root_element) { return new ViewController(r
     return total;
   },
 
+  add_visited: function(count){
+    this.sets["Visited"] = this.sets["Visited"] + count;
+    this.sets["Not Visited"] = this.sets["Not Visited"] - count;
+    this.render();
+  },
+
+  remove_visited: function(count){
+    this.sets["Visited"] = this.sets["Visited"] - count;
+    this.sets["Not Visited"] = this.sets["Not Visited"] + count;
+    this.render();
+  },
+
   percent_for_set: function(set_name) {
     var raw_value = this.sets[set_name];
 
@@ -75,6 +88,6 @@ SimplePieChart.initialize = function(root_element) { return new ViewController(r
 
 $(document).ready(function() {
   $('.simple_pie_chart').each(function() {
-    SimplePieChart.initialize(this);
+    simplePieChart = SimplePieChart.initialize(this);
   });
-})
+});

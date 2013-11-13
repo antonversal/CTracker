@@ -9,5 +9,5 @@ CurrencyTracker::Application.routes.draw do
   resources :currencies, :only => :index
 
   post "countries/visited", to: "user_countries#batch_create"
-  delete "countries/visited", to: "user_countries#batch_destroy"
+  put "countries/visited", to: "user_countries#batch_destroy"
 end
