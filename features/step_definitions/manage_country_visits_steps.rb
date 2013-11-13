@@ -9,14 +9,6 @@ Then(/^I should see list of countries$/) do
   end
 end
 
-Given /the following countries exist:/ do |countries|
-  Country.create!(countries.hashes)
-end
-
-Then /^I should see the following table:$/ do |expected_table|
-  expected_table.diff!(rows)
-end
-
 Then(/^I should see visited stats$/) do
   Country.all.each do |c|
     # probably capybara issue when checked? it returns value or nil
