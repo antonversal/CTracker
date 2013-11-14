@@ -7,12 +7,12 @@ class DataUpdater
   end
 
   def update
-    response = get_soap_response
+    response = @client.call(:get_currencies)
     return nil if response.nil?
     result = response.to_hash[:get_currencies_response][:get_currencies_result]
     doc = Nokogiri::XML::Document.parse(result)
     ActiveRecord::Base.transaction do
-      doc.css('Table').each { |table| update_one(table)}
+      doc.css('Table').each { |table| update_one(table) }
     end
   end
 
@@ -32,15 +32,4 @@ class DataUpdater
       Rails.logger.warn("Error when create country: #{country.errors.full_messages.join(", ")}. Row: #{table.to_s}")
     end
   end
-
-  private
-    def get_soap_response
-      begin
-        @client.call(:get_currencies)
-      rescue Exception => e
-        Rails.logger.error "Error retrieving SOAP Response: '#{e.message}'"
-        e.backtrace.each { |line| Rails.logger.error "- #{line}" }
-        return nil
-      end
-    end
 end
