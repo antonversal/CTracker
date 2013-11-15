@@ -13,7 +13,7 @@ $(function () {
   };
 
   var create = function(url, country_ids){
-    $.post(url, {country_ids: country_ids}).success(Charts.lineChart.render);
+    $.post(url, {country_ids: country_ids}).success(Charts.lineChart.update);
   };
 
   var destroy = function(url, country_ids){
@@ -23,7 +23,7 @@ $(function () {
       data: {
         country_ids: country_ids
       }
-    }).success(Charts.lineChart.render);
+    }).success(Charts.lineChart.update);
   };
 
   $('table.visit-table').on("change", "input.visit", function(){

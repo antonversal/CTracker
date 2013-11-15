@@ -1,5 +1,7 @@
 var LineChart = function (root_element) {
-  var root = root_element;
+  var root = root_element,
+      url = $(root).data("url"),
+      elementData = $(root).data("data");
 
   var self = this;
 
@@ -11,8 +13,25 @@ var LineChart = function (root_element) {
     self.chart.draw(data, options);
   };
 
-  this.render = function () {
-    $.get('/countries/progress', function (data) {
+  this.getData = function(callback){
+    $.get(url, function (data) {callback(data)});
+  };
+
+  this.update = function () {
+    self.getData(self.createTable);
+  };
+
+  this.render = function (data) {
+    if (data.length > 0) {
+      self.createTable(data);
+    }
+    else {
+     self.getData(self.createTable);
+    };
+  };
+
+  this.createTable = function (data) {
+  //  if given_data
       var array = [
         ['Date', 'Counts']
       ];
@@ -26,12 +45,11 @@ var LineChart = function (root_element) {
       }
       var dataTable = google.visualization.arrayToDataTable(array);
       self.draw(dataTable);
-    });
   };
 
   this.constructor = function () {
     self.chart = new google.visualization.LineChart(root);
-    self.render();
+    self.render(elementData);
   }();
 
 };

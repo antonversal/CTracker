@@ -3,7 +3,8 @@
               not_visited_label: "Not Visited",
               visited_count: current_user.visited_countries_count,
               not_visited_count: current_user.not_visited_countries_count) %>
-  <div id="line_chart"></div>
+  <%= line_tag(countries_progress_path, current_user.country_progress) %>
+
 
   <%= render 'search_form' %>
 
