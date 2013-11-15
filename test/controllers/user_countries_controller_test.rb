@@ -23,4 +23,16 @@ class UserCountriesControllerTest < ActionController::TestCase
     assert_response :ok
     assert_equal(expected, response.body)
   end
+
+  test "get country progress" do
+    get :countries
+    expected = [["2012-01-01", 1]]
+    assert_equal(expected.to_json, response.body)
+  end
+
+  test "get currencies progress" do
+    get :currencies
+    expected = [["2012-01-01", 1]]
+    assert_equal(expected.to_json, response.body)
+  end
 end

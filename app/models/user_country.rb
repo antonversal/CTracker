@@ -11,6 +11,7 @@ class UserCountry < ActiveRecord::Base
   belongs_to :country
   belongs_to :user
 
+  has_many :currencies, through: :country
   # Delegates
 
   # Validations: presence > by type > validates
@@ -21,7 +22,15 @@ class UserCountry < ActiveRecord::Base
 
   # Scopes
   class << self
+    def country_progress
+      self.order("date(user_countries.created_at)"). \
+        group("date(user_countries.created_at)").count(:id).to_a
+    end
 
+    def currency_progress
+      self.joins(:currencies).group("date(user_countries.created_at)"). \
+        count(:id).to_a
+    end
   end
 
   # Other model methods

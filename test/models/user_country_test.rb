@@ -48,4 +48,12 @@ class UserCountryTest < ActiveSupport::TestCase
     end
   end
 
+  test ".country_progress" do
+    assert_equal([["2012-01-01", 2],["2012-03-01", 1]], UserCountry.country_progress)
+  end
+
+  test ".currency_progress" do
+    assert_equal([["2012-01-01", 1],["2012-03-01", 1]], UserCountry.currency_progress)
+  end
+
 end

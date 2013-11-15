@@ -13,6 +13,20 @@ class UserCountriesController < ApplicationController
            status: :ok
   end
 
+  # GET /countries/progress
+  def countries
+    progress = current_user.user_countries.country_progress
+    render json: progress.to_json,
+           status: :ok
+  end
+
+  # GET /currencies/progress
+  def currencies
+    progress = current_user.user_countries.currency_progress
+    render json: progress.to_json,
+           status: :ok
+  end
+
   private
     # Only allow a trusted parameter "white list" through.
     def country_ids

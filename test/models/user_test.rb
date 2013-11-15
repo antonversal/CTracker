@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   setup do
-    @user = users(:doe)
+    @user = users(:smith)
   end
 
   test "#visited_countries_count" do
