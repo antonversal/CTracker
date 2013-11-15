@@ -13,7 +13,7 @@ $(function () {
   };
 
   var create = function(url, country_ids){
-    $.post(url, {country_ids: country_ids});
+    $.post(url, {country_ids: country_ids}).success(Charts.lineChart.render);
   };
 
   var destroy = function(url, country_ids){
@@ -23,7 +23,7 @@ $(function () {
       data: {
         country_ids: country_ids
       }
-    });
+    }).success(Charts.lineChart.render);
   };
 
   $('table.visit-table').on("change", "input.visit", function(){
@@ -31,10 +31,10 @@ $(function () {
     var country_id = $(this).data("country-id");
     if($(this).is(':checked')){
       create(url, [country_id]);
-      simplePieChart.add_visited(1);
+      Charts.simplePieChart.add_visited(1);
     } else {
       destroy(url, [country_id]);
-      simplePieChart.remove_visited(1);
+      Charts.simplePieChart.remove_visited(1);
     }
     changeVisitAllState();
   });
@@ -46,7 +46,7 @@ $(function () {
       var country_ids = checkboxes.map(function(){
         return $(this).data("country-id")
       }).get();
-      simplePieChart.add_visited(country_ids.length);
+      Charts.simplePieChart.add_visited(country_ids.length);
       checkboxes.prop('checked', true);
       if (country_ids.length > 0) create(url, country_ids);
     } else {
@@ -55,7 +55,7 @@ $(function () {
         return $(this).data("country-id")
       }).get();
       checkboxes.prop('checked', false);
-      simplePieChart.remove_visited(country_ids.length);
+      Charts.simplePieChart.remove_visited(country_ids.length);
       if (country_ids.length > 0) destroy(url, country_ids);
     }
     changeVisitAllState();
