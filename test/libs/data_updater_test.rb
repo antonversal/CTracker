@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'data_uploader/data_updater'
+require 'data_updater/data_updater'
 
 class DataUpdaterTest < ActiveSupport::TestCase
   setup do
