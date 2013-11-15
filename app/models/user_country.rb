@@ -16,6 +16,7 @@ class UserCountry < ActiveRecord::Base
 
   # Validations: presence > by type > validates
   validates_presence_of :country_id, :user_id, :country, :user
+  validates_uniqueness_of :country_id, scope: :user_id
   # Other properties (e.g. accepts_nested_attributes_for)
 
   # Model dictionaries, state machine
