@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20131112153725) do
     t.datetime "updated_at"
   end
 
+  add_index "countries", ["code"], name: "index_countries_on_code", unique: true
+
   create_table "currencies", force: true do |t|
     t.string   "code"
     t.string   "name"
