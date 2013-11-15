@@ -19,10 +19,12 @@ end
 When(/^I record I collected currency/) do
   currency = currencies(:hryvnia)
   find("input.visit[value='#{currency.country_id}']").set(true)
+  wait_for_ajax
 end
 
 When(/^I type first tree letters of currency$/) do
   fill_in "Search", with: "hry"
+  wait_for_ajax
 end
 
 Then(/^I should see filtered currencies/) do
@@ -39,10 +41,12 @@ end
 
 When(/^I record all currencies as collected$/) do
   find("input.visit-all").set(true)
+  wait_for_ajax
 end
 
 When(/^I record all currencies as not collected/) do
   find("input.visit-all").set(false)
+  wait_for_ajax
 end
 
 Given(/^all currencies are selected$/) do

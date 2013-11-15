@@ -12,8 +12,10 @@ $(function () {
 
   var create = function (url, country_ids) {
     $.post(url, {country_ids: country_ids}).success(function () {
-      Charts.simplePieChart.add_visited(country_ids.length);
-      Charts.lineChart.update();
+      if (typeof Charts.simplePieChart != "undefined")
+        Charts.simplePieChart.add_visited(country_ids.length);
+      if (typeof Charts.lineChart != "undefined")
+        Charts.lineChart.update();
     });
   };
 
@@ -25,8 +27,10 @@ $(function () {
         country_ids: country_ids
       }
     }).success(function () {
-        Charts.simplePieChart.remove_visited(country_ids.length);
-        Charts.lineChart.update();
+        if (typeof Charts.simplePieChart != "undefined")
+          Charts.simplePieChart.remove_visited(country_ids.length);
+        if (typeof Charts.lineChart != "undefined")
+          Charts.lineChart.update();
       });
   };
 

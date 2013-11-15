@@ -18,6 +18,7 @@ end
 
 When(/^I type first tree letters$/) do
   fill_in "Search", with: "ukr"
+  wait_for_ajax
 end
 
 Then(/^I should see filtered country$/) do
@@ -35,6 +36,7 @@ end
 When(/^I record I visited country$/) do
   country = countries(:ukraine)
   find("input.visit[value='#{country.id}']").set(true)
+  wait_for_ajax
 end
 
 Then(/^visited state should be changed$/) do
@@ -48,6 +50,7 @@ end
 
 When(/^I record all countries as visited$/) do
   find("input.visit-all").set(true)
+  wait_for_ajax
 end
 
 Then(/^visited state of all countries should be changed to visited$/) do
@@ -58,6 +61,7 @@ end
 
 When(/^I record all countries as not visited$/) do
   find("input.visit-all").set(false)
+  wait_for_ajax
 end
 
 Then(/^visited state of all countries should be changed to not visited$/) do
