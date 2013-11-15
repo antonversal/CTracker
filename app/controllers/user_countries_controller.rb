@@ -15,14 +15,14 @@ class UserCountriesController < ApplicationController
 
   # GET /countries/progress
   def countries
-    progress = current_user.user_countries.country_progress
+    progress = current_user.country_progress
     render json: progress.to_json,
            status: :ok
   end
 
   # GET /currencies/progress
   def currencies
-    progress = current_user.user_countries.currency_progress
+    progress = current_user.currency_progress
     render json: progress.to_json,
            status: :ok
   end

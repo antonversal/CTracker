@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :user_countries
   has_many :countries, through: :user_countries
   # Delegates
-
+  delegate :country_progress, :currency_progress, to: :user_countries
   # Validations: presence > by type > validates
 
   # Other properties (e.g. accepts_nested_attributes_for)
