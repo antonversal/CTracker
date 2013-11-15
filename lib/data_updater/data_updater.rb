@@ -17,10 +17,7 @@ class DataUpdater
   end
 
   def update_one(table)
-    code = table.css('CountryCode').text
-    name = table.css('Name').text
-    currency_code = table.css('CurrencyCode').text
-    currency_name = table.css('Currency').text
+    code, currency_code, currency_name, name = extract_data(table)
     country = Country.create_with({name: name}).find_or_create_by(code: code)
     if country.valid?
       currency = Currency.create_with({name: currency_name, country: country}).\
@@ -31,5 +28,13 @@ class DataUpdater
     else
       Rails.logger.warn("Error when create country: #{country.errors.full_messages.join(", ")}. Row: #{table.to_s}")
     end
+  end
+
+  def extract_data(table)
+    code = table.css('CountryCode').text
+    name = table.css('Name').text
+    currency_code = table.css('CurrencyCode').text
+    currency_name = table.css('Currency').text
+    return code, currency_code, currency_name, name
   end
 end
