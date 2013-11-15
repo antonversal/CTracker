@@ -8,7 +8,8 @@ var LineChart = function (root_element) {
   this.draw = function (data) {
     var options = {
       title: 'My Progress',
-      pointSize: 3
+      pointSize: 3,
+      legend: {position: 'none'}
     };
     self.chart.draw(data, options);
   };

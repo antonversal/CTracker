@@ -1,12 +1,12 @@
 <section>
+  <%= line_tag(currencies_progress_path, current_user.currency_progress) %>
   <%= pie_tag(visited_label: "Collected",
               not_visited_label: "Not Collected",
               visited_count: current_user.collected_currencies_count,
               not_visited_count: current_user.not_collected_currencies_count) %>
 
-  <%= render 'search_form' %>
-
   <h1>Currencies</h1>
+  <%= render 'search_form' %>
   <table id="currencies_table" class="visit-table">
     <%= render 'table' %>
   </table>

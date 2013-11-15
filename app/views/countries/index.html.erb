@@ -1,14 +1,13 @@
 <section>
-  <%= pie_tag(visited_label: "Visited",
-              not_visited_label: "Not Visited",
-              visited_count: current_user.visited_countries_count,
-              not_visited_count: current_user.not_visited_countries_count) %>
-  <%= line_tag(countries_progress_path, current_user.country_progress) %>
-
-
-  <%= render 'search_form' %>
-
+  <div>
+    <%= line_tag(countries_progress_path, current_user.country_progress) %>
+    <%= pie_tag(visited_label: "Visited",
+                not_visited_label: "Not Visited",
+                visited_count: current_user.visited_countries_count,
+                not_visited_count: current_user.not_visited_countries_count) %>
+  </div>
   <h1>Countries</h1>
+  <div><%= render 'search_form' %></div>
   <table id="countries_table" class="visit-table">
     <%= render 'table' %>
   </table>

@@ -152,14 +152,9 @@ body header nav ul li a:active {
   background: none;
 }
 
-section h1 {
-  float: left;
-}
-
 /* Charts */
-#collected_currencies_chart,
 #simple_pie_chart {
-  float: right;
+  float: left;
 }
 
 #line_chart {
