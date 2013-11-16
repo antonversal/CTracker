@@ -38,6 +38,14 @@ And run server:
 
     rails s
 
+The login you can use users:
+
+    email: smith@example.com
+    password: paSSword123456
+
+    email: doe@example.com
+    password: paSSword123456
+
 The questions that should be asked to Mr. Smart
 ===============================================
 
