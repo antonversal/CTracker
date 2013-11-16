@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   end
 
   def collected_currencies_count
-    countries.joins(:currencies).count
+    countries.where(countries: {id: Currency.select(:country_id)}).count
   end
 
   def not_collected_currencies_count
