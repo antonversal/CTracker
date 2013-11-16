@@ -24,13 +24,15 @@ class UserCountry < ActiveRecord::Base
   # Scopes
   class << self
     def country_progress
-      self.order("date(user_countries.created_at)"). \
-        group("date(user_countries.created_at)").count(:id).to_a
+      join = <<-join
+        LEFT JOIN (SELECT DISTINCT date(created_at) AS created_at FROM
+            user_countries) t ON date(user_countries.created_at) <= t.created_at
+      join
+      self.joins(join).order("date(t.created_at)").group("date(t.created_at)").count.to_a
     end
 
     def currency_progress
-      self.joins(:currencies).group("date(user_countries.created_at)"). \
-        count(:id).to_a
+      self.joins(:country).where(countries: {id: Currency.select(:country_id)}).country_progress
     end
   end
 
